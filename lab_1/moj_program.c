@@ -1,7 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<time.h>
-#include"pomiar_czasu.h"
 
 const int liczba = 100000;
 
@@ -33,5 +32,6 @@ int main(){
   printf("Czas wykonania %d operacji arytmetycznych: \n",liczba);
   t1 = czas_zegara() - t1;
   t2 = czas_CPU() - t2;
-
+  printf("Czas_CPU: %lf\n",t2);
+  printf("Czas_zegara: %lf\n",t1);
 }

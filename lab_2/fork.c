@@ -4,7 +4,7 @@
 
 int zmienna_globalna=0;
 
-main(){
+int main(int argc, char *argv[]){
 
   int pid, wynik, i;
   if(zmienna_globalna == 0) {
@@ -17,8 +17,7 @@ main(){
     if(pid==0){
 
       zmienna_globalna++;
-
-       wynik=execlp("./program", 'ls');
+      wynik=execv("./program", (char *)0);
        if(wynik==-1) {
             printf("Proces potomny nie wykonal programu\n");
        } else {

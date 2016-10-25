@@ -45,9 +45,7 @@ void * watek_klient (void * arg_wsk){
     printf("Klient %d, pije\n", moj_id);
     nanosleep((struct timespec[]){{0, 500000000L}}, NULL);
     printf("Klient %d, odkladam kufel\n", moj_id);
-    pthread_mutex_lock(&kuf.mut_kuff);
     kuf.tab_kufli[kufel] = 0;
-    pthread_mutex_unlock(&kuf.mut_kuff);
   }
   printf("Klient %d,!wychodzi z pubu\n", moj_id);
   return(NULL);

@@ -26,29 +26,24 @@ void * watek_klient (void * arg_wsk){
     printf("Klient %d, czeka na kufel\n", moj_id);
     a = 0;
     while(1) {
-      //pthread_mutex_lock(&kuf.tab_mut_kuff[a]); // Tylko kufel 1
-      pthread_mutex_trylock(&kuf.tab_mut_kuff[a]);
-      if(kuf.tab_kufli[a] == 0) {
-          kuf.tab_kufli[a] = 1;
-          kufel = a;
-          printf("Klient %d, wybrał kufel %d\n",moj_id,a);
-          break;
-      } else if(a == kuf.l_kf - 1) {
-          a = 0;
+      if(pthread_mutex_trylock(&kuf.tab_mut_kuff[a]) == 0) {
+        kufel = a;
+        printf("Klient %d, wybrał kufel %d\n",moj_id,a);
+        break;
+      } else if(a == kuf.l_kf -1) {
+        a = 0;
       } else {
-          a++;
+        a++;
       }
     }
     printf("Klient %d, czeka na kran\n", moj_id);
     b = 0;
     while(1) {
-      pthread_mutex_trylock(&kra.tab_mut_kran[b]);
-      if(kra.tab_kran[b] == 0) {
-        kra.tab_kran[b] = 1;
+      if(pthread_mutex_trylock(&kra.tab_mut_kran[b]) == 0) {
         kran = b;
         printf("Klient %d, wybrał kran %d\n",moj_id,b);
         break;
-      } else if(b == kra.l_kr - 1) {
+      } else if (b == kra.l_kr - 1){
         b = 0;
       } else {
         b++;

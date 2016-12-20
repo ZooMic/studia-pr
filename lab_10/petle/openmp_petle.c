@@ -85,7 +85,7 @@ void kolumnowo_critical() {
 
 void blokowo() {
     omp_set_nested(1);
-    int threads_num = 2;
+    int threads_num = 3;
     int n = WYMIAR / threads_num;
     omp_set_num_threads(threads_num);
     printf("\n");
@@ -120,8 +120,7 @@ void blokowo() {
         #pragma omp atomic
         suma += suma_priv_out;
     }
-
-    printf("Suma wyrazow tablicy(kolumnowo): %lf\n\n", suma);
+    printf("Suma wyrazow tablicy(blokowo): %lf\n\n", suma);
     for(i = 0; i < WYMIAR; i++) {
         for(j = 0; j < WYMIAR; j++) {
             printf("[%d,%d]",d[i][j],c[i][j]);

@@ -43,8 +43,8 @@ double search_max_openmp_task(double *A, int p, int k) {
 			      int num_tasks = num_threads+1;
 			      int n_loc=ceil(n/num_tasks);
 			      int itask;
-						double local_max = 0;
-						#pragma omp parallel for default(none) firstprivate(local_max) shared(a_max, num_tasks, n_loc, A, p, k)
+				  double local_max = 0;
+				  #pragma omp parallel for default(none) firstprivate(local_max) shared(a_max, num_tasks, n_loc, A, p, k)
 			      for(itask=0; itask<num_tasks; itask++) {
 								int p_task = p+itask*n_loc;
 								if(p_task>k) {
